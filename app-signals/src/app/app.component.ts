@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,22 +7,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app-signals';
-  search = '';
-  users = [
+  search = signal('');
+  users = signal([
     { id: 1, name: 'sethu' },
     { id: 2, name: 'saran' },
-  ];
-  filterUsers = this.users;
+  ]);
+  filterUsers = this.users();
 
-  setSearchString(e: Event) {
-    this.search = (e.target as HTMLInputElement).value;
-    this.filterUsers = this.users.filter((user) =>
-      user.name.startsWith(this.search)
+  setSearchString(e: any) {
+    this.search.set(e.target.value);
+    this.filterUsers = this.users().filter((user) =>
+      user.name.startsWith(this.search())
     );
   }
 
   addUser() {
-    this.users = [...this.users, { id: 3, name: 'magi' }];
-    this.filterUsers = this.users;
+    this.users.mutate((users) => [...users, { id: 3, name: 'magi' }]);
+    this.filterUsers = this.users();
   }
 }
