@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   addUser() {
-    this.users.mutate((users) => [...users, { id: 3, name: 'magi' }]);
+    this.users.update((users) => [...users, { id: 3, name: 'magi' }]); // adding a new object in array so update if we want edit the object property values then mutate
     this.filterUsers = this.users();
   }
 }
