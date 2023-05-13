@@ -26,3 +26,5 @@ todos.mutate(value => {
   // Change the first TODO in the array to 'done: true' without replacing it.
   value[0].done = true;
 }); -->
+
+# computed signal it derieves a value from another signal. It will cache the value when signal is changed. We cant set a value to computed signal because it is not writable

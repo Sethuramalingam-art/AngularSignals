@@ -363,7 +363,7 @@
   <input type="text" (input)="setSearchString($event)" />
   <hr />
   <ul>
-    <li *ngFor="let user of filterUsers">{{ user.name }}</li>
+    <li *ngFor="let user of filterUsers()">{{ user.name }}</li>
   </ul>
   <hr />
   <button (click)="addUser()">Add Random User</button>

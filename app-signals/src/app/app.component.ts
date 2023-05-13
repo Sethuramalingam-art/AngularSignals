@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +12,15 @@ export class AppComponent {
     { id: 1, name: 'sethu' },
     { id: 2, name: 'saran' },
   ]);
-  filterUsers = this.users();
+  filterUsers = computed(() =>
+    this.users().filter((user) => user.name.startsWith(this.search()))
+  );
 
-  setSearchString(e: any) {
-    this.search.set(e.target.value);
-    this.filterUsers = this.users().filter((user) =>
-      user.name.startsWith(this.search())
-    );
+  setSearchString(e: Event) {
+    this.search.set((e.target as HTMLInputElement).value);
   }
 
   addUser() {
     this.users.update((users) => [...users, { id: 3, name: 'magi' }]); // adding a new object in array so update if we want edit the object property values then mutate
-    this.filterUsers = this.users();
   }
 }
