@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,9 @@ export class AppComponent {
     { id: 1, name: 'sethu' },
     { id: 2, name: 'saran' },
   ]);
+  logger = effect(() => {
+    localStorage.setItem('searchstring', this.search());
+  });
   filterUsers = computed(() =>
     this.users().filter((user) => user.name.startsWith(this.search()))
   );
