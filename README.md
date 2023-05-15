@@ -28,3 +28,13 @@ todos.mutate(value => {
 }); -->
 
 # computed signal it derieves a value from another signal. It will cache the value when signal is changed. We cant set a value to computed signal because it is not writable
+
+# Signals are useful because they can notify interested consumers when they change. An effect is an operation that runs whenever one or more signal values change. like useeffect in react
+
+<!-- effect(() => {
+  console.log(`The current count is: ${count()}`);
+}); -->
+
+# Effects always run at least once. When an effect runs, it tracks any signal value reads. Whenever any of these signal values change, the effect runs again. Similar to computed signals, effects keep track of their dependencies dynamically, and only track signals which were read in the most recent execution.
+
+# Effects always execute asynchronously, during the change detection process.
