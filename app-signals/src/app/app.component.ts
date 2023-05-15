@@ -19,6 +19,10 @@ export class AppComponent {
     this.users().filter((user) => user.name.startsWith(this.search()))
   );
 
+  // fromsignal is used for convert signal into observables and
+  // fromobservables is used for convert observable into signals
+  // filterUsers = fromSignal(this.search()).pipe((x)=>x)
+
   setSearchString(e: Event) {
     this.search.set((e.target as HTMLInputElement).value);
   }
